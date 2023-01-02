@@ -1,0 +1,242 @@
+Virtual assistant AIR
+Establishment name AirTech
+
+Research paper:
+import pyttsx3:
+    an necessary component to change python text to speach
+    choosing default ai voice for time being
+    setting the rate to 175 (speed of assistant)
+
+    def talk:
+        taking input from the user in audio variable
+
+    def get_voice_command():
+        getting the commands from the usr using the google format recognizer
+        data = recog.recognize_google(audio) recognizing data
+
+        sr.UnknownValueError:
+            unable to understand input from the usr or the function is not developed to be used
+
+        sr.RequestError as ex:
+            google is unable to interpret the speech (voice input error ERROR)
+
+    def response(text):
+        print(text)
+        tts = gTTS(text=text, lang="en") {using google text to speech software to respond to the usr}
+        audio = "Audio.mp3"
+        tts.save(audio)
+        playsound.playsound(audio)
+        os.remove(audio)
+            using the following code processing the output for response
+
+import datetime
+import calendar
+    def today_date():
+        now = datetime.datetime.now()
+        date_now = datetime.datetime.today()
+        week_now = calendar.day_name[date_now.weekday()]
+        month_now = now.month
+        day_now = now.day
+            generating the following outcome:
+            2023-01-01 16:16:49.936778
+            2023-01-01 16:16:49.936807
+            Sunday
+            1
+            1
+
+            Air generating the following outcome:
+            Today is Sunday, January the 1st
+
+        showing the accuracy rate of output: Test number 1 (94-74-94-98/100) asking date and time
+           Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.94633245,
+                                       'transcript': 'what is the time'},
+                                   {'transcript': 'are what is the time'},
+                                   {'transcript': 'add what is the time'}],
+                'final': True}
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.74133611,
+                                       'transcript': "what's today's date"},
+                                   {'transcript': "Edwards today's date"},
+                                   {'transcript': "Edward's today's date"},
+                                   {'transcript': "add what's today's date"}],
+                'final': True}
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.94805598,
+                                       'transcript': "what is today's date"},
+                                   {'transcript': "and what is today's date"},
+                                   {'transcript': "are what is today's date"}],
+                'final': True}
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.98762906,
+                                       'transcript': 'what is the time'}],
+                'final': True}
+            Listening...
+
+            Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+            **Improving accuracy with additional statements for air**
+
+        showing the accuracy rate of output: Test number 2 (93-97/100) asking date and time
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.93937123,
+                                       'transcript': "what is today's date"},
+                                   {'transcript': "are what is today's date"},
+                                   {'transcript': "air what is today's date"},
+                                   {'transcript': "add what is today's date"}],
+                'final': True}
+             Today is Sunday, January the 1st
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.97257072,
+                                       'transcript': "what's the time"},
+                                   {'transcript': 'airport the time'},
+                                   {'transcript': "are what's the time"},
+                                   {'transcript': "air what's the time"}],
+                'final': True}
+             It is 4:52 pm .
+            Listening...
+            result2:
+            []
+
+            response time marked as 8-10 sec
+
+        Giving more complex statements for it to understand
+        showing the accuracy rate of output: Test number 3 (79/100) asking date and time
+            Listening...
+            result2:
+            {   'alternative': [   {   'confidence': 0.79527718,
+                                       'transcript': "and what do you think today's date "
+                                                     'is'},
+                                   {'transcript': "are what do you think today's date is"},
+                                   {'transcript': "airport do you think today's date is"},
+                                   {'transcript': "air what do you think today's date is"}],
+                'final': True}
+             Today is Sunday, January the 1st
+
+            response time marked as 10-15 sec
+            result being more complex the sentence more time it takes
+            solution:
+                releasing pre-defined statements for air to reduce time consumed to answer
+
+                previous statement for analysis:
+                if "date" in text or "day" in text or "month" in text:
+                resulting output (Test number 1,2,3)
+
+                updated statement for analysis:
+                if "date" in text or "day" in text or "month" in text or "what do you think today's date is" in text:
+                resulting output:
+                    Listening...
+                    result2:
+                    {   'alternative': [   {   'confidence': 0.94514018,
+                                               'transcript': "what do you think today's date is"},
+                                           {'transcript': "at what do you think today's date is"},
+                                           {'transcript': "are what do you think today's date is"}],
+                        'final': True}
+                     Today is Sunday, January the 1st
+
+                response time improved, takes less than 3 sec to respond
+
+air response towards greetings:
+showing the accuracy rate of output: Test number 1 (98-52-98/100) greeting air
+    Listening...
+    result2:
+    {   'alternative': [{'confidence': 0.98762906, 'transcript': 'LOL'}],
+        'final': True}
+    Listening...
+    result2:
+    {   'alternative': [   {'confidence': 0.52952683, 'transcript': 'Ed hello'},
+                           {'transcript': 'are hello'},
+                           {'transcript': 'and hello'},
+                           {'transcript': 'add hello'},
+                           {'transcript': 'air hello'}],
+        'final': True}
+    Listening...
+    result2:
+    {   'alternative': [{'confidence': 0.98762906, 'transcript': 'hello'}],
+        'final': True}
+
+        response type(failure)
+        air not able to understand or able to pic up greeting statements
+        taking different approach
+        result remained the same (problem will bw tackled later)
+
+import wikipedia
+searching people on wikipedia with the help of air
+using word separation method to get the name from the users statement
+
+    extras = ["wikipedia", "who", "is", "search", "on", "at", " "]
+    original_text = text.split()
+    to_be_searched = ""
+    for imp in range(0, len(original_text)):
+        if original_text[imp] != ".":
+            if original_text[imp] not in extras:
+                to_be_searched = to_be_searched + original_text[imp]
+                to_be_searched = to_be_searched + " "
+        else:
+            break
+    return to_be_searched
+
+to_be_searched is the data that has to be searched on wikipedia or in other words the name that has to be searched on wikipedia
+looping program:
+    "wikipedia" in text or "Wikipedia" in text:
+        if "who is" in text:
+            person = wiki_finder(text)
+            wiki = wikipedia.summary(person, sentences=2)
+            speak = speak + " " + wiki
+
+    changes for advance mechanism will be made later
+    wikipedia.summary(person, sentences=2) is used to only note 2 sentences of that particular person
+
+showing the accuracy rate of output: Test number 1 (96-96-98/100) searching people on wikipedia (Jeff Bezos, Elon Musk, Shakuntala Devi)
+    Listening...
+    result2:
+    {   'alternative': [   {   'confidence': 0.9664163,
+                               'transcript': 'who is Elon Musk on Wikipedia'},
+                           {'transcript': "who is Elon musk's on Wikipedia"}],
+        'final': True}
+     Business magnate Elon Musk initiated the acquisition of American social media company Twitter, Inc. on April 14, 2022, and concluded it on October 27, 2022.
+    Listening...
+    result2:
+    {   'alternative': [   {   'confidence': 0.96726507,
+                               'transcript': 'who is Jeff Bezos on Wikipedia'},
+                           {'transcript': 'who is Jeff Bezos own Wikipedia'}],
+        'final': True}
+     Jeffrey Preston Bezos ( BAY-zohss; né Jorgensen; born January 12, 1964) is an American entrepreneur, media proprietor, investor, and commercial astronaut. He is the founder, executive chairman, and former president and CEO of Amazon.
+    Listening...
+    result2:
+    []
+    Listening...
+    result2:
+    {   'alternative': [   {   'confidence': 0.987629,
+                               'transcript': 'who is shakuntala Devi on '
+                                             'Wikipedia'}],
+        'final': True}
+     Shakuntala Devi (4 November 1929 – 21 April 2013) was an Indian mental calculator and writer, popularly known as the "Human Computer". Her talent earned her a place in the 1982 edition of The Guinness Book of World Records.
+    Listening...
+
+    Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+    response time 2-3 sec
+    multiple trials were made to test out the system
+    as such minute change was made so that user can not only search a person on wikipedia but also take advantage by able to search more objects, people, places etc.
+    multiple tests were made to test out the server and the system responded with 95+% of accuracy
+    showing the accuracy rate of output: Test number 2 (98/100) searching Lord Krishna on wikipedia
+        Listening...
+        result2:
+        {   'alternative': [   {   'confidence': 0.98762906,
+                                   'transcript': 'Search Lord Krishna on Wikipedia'}],
+            'final': True}
+         Krishna (; Sanskrit: कृष्ण IAST: Kṛṣṇa [ˈkr̩ʂɳɐ])  is a major deity in Hinduism. He is worshipped as the eighth avatar of Vishnu and also as the Supreme god in his own right.
+        Listening...
+
+        Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+        response time 2-3 sec
+
+
